@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌳 مغامرة بومو في غابة النون</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Comic Sans MS', 'Tahoma', sans-serif; }
+  
+  body {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #87ceeb 0%, #98d98e 50%, #558b2f 100%);
+    overflow-x: hidden;
+    padding: 10px;
+    position: relative;
+  }
+  
+  /* غيوم متحركة في الخلفية */
+  body::before, body::after {
+    content: '☁️';
+    position: fixed;
+    font-size: 4em;
+    opacity: 0.6;
+    animation: floatCloud 30s linear infinite;
+    z-index: 0;
+  }
+  body::before { top: 5%; left: -10%; animation-duration: 40s; }
+  body::after { top: 15%; left: -10%; animation-duration: 55s; animation-delay: 10s; }
+  
+  @keyframes floatCloud {
+    from { transform: translateX(-10vw); }
+    to { transform: translateX(110vw); }
+  }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #fff8e1 0%, #ffe0b2 100%);
+    border-radius: 30px;
+    padding: 25px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    border: 8px solid #6d4c41;
+    position: relative;
+    z-index: 1;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(76, 175, 80, 0.1) 0%, transparent 50%);
+  }
+  
+  /* زخرفة خشبية على الأطراف */
+  .container::before {
+    content: '🌿 🍄 🌸 🌺 🍃';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5em;
+    background: #fff8e1;
+    padding: 0 20px;
+    letter-spacing: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #2e7d32;
+    text-shadow: 3px 3px 0 #fff, 5px 5px 10px rgba(0,0,0,0.2);
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }
+  
+  .subtitle {
+    text-align: center;
+    font-size: 1.2em;
+    color: #6d4c41;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* شخصية بومو البومة */
+  .bumo {
+    display: inline-block;
+    animation: bumoBounce 2s infinite;
+    font-size: 3em;
+    filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
+  }
+  
+  @keyframes bumoBounce {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+  }
+  
+  .speech-bubble {
+    background: white;
+    border: 3px solid #6d4c41;
+    border-radius: 20px;
+    padding: 15px 20px;
+    margin: 15px auto;
+    max-width: 600px;
+    position: relative;
+    font-size: 1.2em;
+    color: #5d4037;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .speech-bubble::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: 50px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #6d4c41;
+  }
+  
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: -11px;
+    right: 52px;
+    width: 0;
+    height: 0;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 13px solid white;
+  }
+  
+  .screen { display: none; animation: forestFade 0.6s; }
+  .screen.active { display: block; }
+  
+  @keyframes forestFade {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  
+  /* شاشة البداية */
+  .start-box { text-align: center; padding: 20px; }
+  
+  .big-scene {
+    background: linear-gradient(180deg, #aed581 0%, #558b2f 100%);
+    border-radius: 25px;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 600px;
+    border: 5px solid #6d4c41;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .big-scene::before {
+    content: '🌳 🌲 🌳 🌲 🌳';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 3em;
+    letter-spacing: 5px;
+    opacity: 0.5;
+  }
+  
+  .big-letter {
+    font-size: 9em;
+    color: #ff6f00;
+    text-shadow: 4px 4px 0 #fff, 8px 8px 20px rgba(0,0,0,0.3);
+    animation: letterSwing 3s infinite ease-in-out;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @keyframes letterSwing {
+    0%, 100% { transform: rotate(-8deg) scale(1); }
+    50% { transform: rotate(8deg) scale(1.05); }
+  }
+  
+  .players-setup {
+    background: linear-gradient(135deg, #fff9c4, #dcedc8);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 600px;
+    border: 4px dashed #6d4c41;
+  }
+  
+  .players-setup label {
+    font-size: 1.2em;
+    color: #2e7d32;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 10px;
+  }
+  
+  .players-setup input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2em;
+    border: 3px solid #8bc34a;
+    border-radius: 15px;
+    text-align: center;
+    outline: none;
+    background: white;
+  }
+  
+  .players-setup input:focus {
+    border-color: #ff6f00;
+    box-shadow: 0 0 15px rgba(255,111,0,0.4);
+  }
+  
+  .btn {
+    background: linear-gradient(135deg, #ff6f00, #ffa726);
+    color: white;
+    border: 4px solid #6d4c41;
+    padding: 15px 40px;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #5d4037, 0 12px 20px rgba(0,0,0,0.3);
+    transition: all 0.15s;
+    margin: 10px;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 11px 0 #5d4037, 0 15px 25px rgba(0,0,0,0.3);
+  }
+  
+  .btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 3px 0 #5d4037;
+  }
+  
+  .btn-green { background: linear-gradient(135deg, #43a047, #66bb6a); }
+  .btn-red { background: linear-gradient(135deg, #e53935, #ef5350); }
+  .btn-blue { background: linear-gradient(135deg, #1e88e5, #42a5f5); }
+  .btn-purple { background: linear-gradient(135deg, #8e24aa, #ab47bc); }
+  
+  /* لوحة النقاط */
+  .scoreboard {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background: linear-gradient(135deg, #6d4c41, #8d6e63);
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+    border: 3px solid #4e342e;
+  }
+  
+  .player-card {
+    background: linear-gradient(135deg, #fff8e1, #ffe0b2);
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin: 5px;
+    text-align: center;
+    min-width: 130px;
+    border: 3px solid transparent;
+    transition: all 0.3s;
+    position: relative;
+  }
+  
+  .player-card.active {
+    border-color: #ffd600;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #ffd600;
+    animation: activeGlow 1s infinite alternate;
+  }
+  
+  @keyframes activeGlow {
+    from { box-shadow: 0 0 15px #ffd600; }
+    to { box-shadow: 0 0 30px #ff6f00, 0 0 40px #ffd600; }
+  }
+  
+  .player-avatar {
+    font-size: 2em;
+    display: block;
+  }
+  
+  .player-name {
+    font-size: 1.1em;
+    color: #5d4037;
+    font-weight: bold;
+  }
+  
+  .player-score {
+    font-size: 2em;
+    color: #e65100;
+    font-weight: bold;
+    text-shadow: 2px 2px 0 white;
+  }
+  
+  .score-label {
+    font-size: 0.8em;
+    color: #6d4c41;
+  }
+  
+  /* معلومات الجولة */
+  .round-info {
+    background: linear-gradient(135deg, #aed581, #7cb342);
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 4px solid #558b2f;
+    position: relative;
+  }
+  
+  .round-title {
+    font-size: 1.7em;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 0 #33691e;
+  }
+  
+  .round-desc {
+    font-size: 1.1em;
+    color: #fff;
+    margin-top: 5px;
+    text-shadow: 1px 1px 0 #33691e;
+  }
+  
+  /* مسار التقدم */
+  .forest-path {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #8d6e63, #a1887f, #8d6e63);
+    padding: 15px 20px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    position: relative;
+    border: 3px solid #5d4037;
+  }
+  
+  .forest-path::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    right: 30px;
+    height: 4px;
+    background: #fff;
+    opacity: 0.3;
+    transform: translateY(-50%);
+    border-radius: 2px;
+  }
+  
+  .path-step {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #d7ccc8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #5d4037;
+    border: 3px solid #5d4037;
+    position: relative;
+    z-index: 2;
+    font-size: 1.1em;
+  }
+  
+  .path-step.done {
+    background: #66bb6a;
+    color: white;
+    border-color: #2e7d32;
+  }
+  
+  .path-step.current {
+    background: #ffd600;
+    color: #5d4037;
+    border-color: #ff6f00;
+    animation: pathPulse 1s infinite;
+    transform: scale(1.2);
+  }
+  
+  @keyframes pathPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,214,0,0.7); }
+    50% { box-shadow: 0 0 0 15px rgba(255,214,0,0); }
+  }
+  
+  .path-step.done::after {
+    content: '✓';
+    position: absolute;
+    font-size: 1.5em;
+  }
+  
+  .turn-indicator {
+    background: linear-gradient(135deg, #ff6f00, #ffa726);
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 3px solid #5d4037;
+  }
+  
+  /* جولة 1: جمع الفاكهة */
+  .fruit-tree {
+    position: relative;
+    background: linear-gradient(180deg, #c8e6c9 0%, #81c784 100%);
+    border-radius: 25px;
+    padding: 30px 20px;
+    min-height: 400px;
+    border: 5px solid #558b2f;
+    overflow: hidden;
+  }
+  
+  .fruit-tree::before {
+    content: '🌳';
+    position: absolute;
+    font-size: 15em;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.3;
+  }
+  
+  .falling-fruits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .fruit-item {
+    background: white;
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    border: 4px solid #66bb6a;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    animation: fruitDrop 0.6s ease-out;
+  }
+  
+  @keyframes fruitDrop {
+    from { transform: translateY(-100px) rotate(-180deg); opacity: 0; }
+    to { transform: translateY(0) rotate(0); opacity: 1; }
+  }
+  
+  .fruit-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: #ff6f00;
+  }
+  
+  .fruit-item.correct {
+    background: #c8e6c9;
+    border-color: #2e7d32;
+    animation: fruitCollect 0.6s;
+  }
+  
+  .fruit-item.wrong {
+    background: #ffcdd2;
+    border-color: #c62828;
+    animation: shake 0.5s;
+  }
+  
+  @keyframes fruitCollect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3) rotate(20deg); }
+    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+  }
+  
+  .fruit-emoji { font-size: 3.5em; display: block; }
+  .fruit-word { font-size: 1.3em; color: #2e7d32; font-weight: bold; margin-top: 5px; }
+  
+  /* جولة 2: صيد الفراشات */
+  .butterfly-field {
+    position: relative;
+    background: linear-gradient(180deg, #e1bee7 0%, #ce93d8 50%, #ab47bc 100%);
+    border-radius: 25px;
+    padding: 30px 20px;
+    min-height: 400px;
+    border: 5px solid #6a1b9a;
+    overflow: hidden;
+  }
+  
+  .butterfly-field::before {
+    content: '🌸 🌼 🌺 🌷 🌻';
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    font-size: 2em;
+    text-align: center;
+    letter-spacing: 15px;
+  }
+  
+  .butterfly {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    border: 4px solid #ab47bc;
+    transition: transform 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 110px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: flyAround 8s infinite ease-in-out;
+  }
+  
+  @keyframes flyAround {
+    0%, 100% { transform: translate(0, 0) rotate(-5deg); }
+    25% { transform: translate(20px, -15px) rotate(5deg); }
+    50% { transform: translate(-15px, 20px) rotate(-5deg); }
+    75% { transform: translate(15px, 15px) rotate(5deg); }
+  }
+  
+  .butterfly:hover {
+    transform: scale(1.15);
+    z-index: 10;
+  }
+  
+  .butterfly.caught {
+    animation: catchButterfly 0.6s forwards;
+  }
+  
+  @keyframes catchButterfly {
+    to { transform: scale(0) rotate(720deg); opacity: 0; }
+  }
+  
+  .butterfly.wrong-catch {
+    animation: shake 0.5s;
+    border-color: #c62828;
+    background: #ffcdd2;
+  }
+  
+  .butterfly-emoji { font-size: 2.5em; }
+  .butterfly-word { font-size: 0.9em; color: #6a1b9a; font-weight: bold; }
+  
+  /* جولة 3: كهف الكنز */
+  .treasure-cave {
+    background: linear-gradient(180deg, #424242 0%, #212121 100%);
+    border-radius: 25px;
+    padding: 30px 20px;
+    min-height: 400px;
+    border: 5px solid #ffd600;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .treasure-cave::before {
+    content: '💎 ✨ 💎 ✨ 💎';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 20px;
+    animation: sparkle 2s infinite;
+  }
+  
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  
+  .treasure-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .treasure-item {
+    background: linear-gradient(135deg, #ffd54f, #ffb300);
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    border: 4px solid #ff6f00;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 2px 10px rgba(255,255,255,0.3);
+  }
+  
+  .treasure-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(255,214,0,0.6);
+  }
+  
+  .treasure-item.selected {
+    background: linear-gradient(135deg, #66bb6a, #43a047);
+    border-color: #fff;
+    transform: scale(1.05);
+  }
+  
+  .treasure-item.wrong-pick {
+    background: linear-gradient(135deg, #ef5350, #c62828);
+    animation: shake 0.5s;
+  }
+  
+  .treasure-emoji { font-size: 3em; display: block; }
+  .treasure-word { font-size: 1.1em; color: #5d4037; font-weight: bold; margin-top: 5px; }
+  .treasure-item.selected .treasure-word { color: white; }
+  
+  /* جولة 4: جسر الحروف */
+  .bridge-scene {
+    background: linear-gradient(180deg, #81d4fa 0%, #4fc3f7 50%, #0288d1 100%);
+    border-radius: 25px;
+    padding: 30px 20px;
+    min-height: 400px;
+    border: 5px solid #01579b;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bridge-scene::before {
+    content: '🌊 🌊 🌊 🌊 🌊';
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    font-size: 2em;
+    text-align: center;
+    letter-spacing: 10px;
+    animation: waveMove 3s infinite linear;
+  }
+  
+  @keyframes waveMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50px); }
+  }
+  
+  .bridge-pair {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .bridge-image {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 20px;
+    border: 4px solid #0288d1;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    min-width: 120px;
+  }
+  
+  .bridge-image:hover { transform: scale(1.05); }
+  
+  .bridge-image.selected {
+    background: #fff59d;
+    border-color: #ff6f00;
+    box-shadow: 0 0 20px #ffd600;
+  }
+  
+  .bridge-image.matched {
+    background: #a5d6a7;
+    border-color: #2e7d32;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  
+  .bridge-emoji { font-size: 3em; display: block; }
+  .bridge-word { font-size: 1.1em; color: #01579b; font-weight: bold; }
+  
+  .bridge-letter {
+    background: linear-gradient(135deg, #ff6f00, #ffa726);
+    color: white;
+    font-size: 3em;
+    font-weight: bold;
+    padding: 15px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 4px solid #5d4037;
+    transition: all 0.3s;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+    min-width: 80px;
+    text-align: center;
+  }
+  
+  .bridge-letter:hover { transform: scale(1.1); }
+  
+  .bridge-letter.selected {
+    background: linear-gradient(135deg, #ffd600, #ffeb3b);
+    color: #5d4037;
+    box-shadow: 0 0 20px #ffd600;
+  }
+  
+  .bridge-letter.matched {
+    background: #66bb6a;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  .bridge-arrow {
+    font-size: 2em;
+    color: white;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+  }
+  
+  /* جولة 5: شجرة النون */
+  .nun-tree {
+    background: linear-gradient(180deg, #c8e6c9 0%, #81c784 100%);
+    border-radius: 25px;
+    padding: 30px 20px;
+    min-height: 400px;
+    border: 5px solid #2e7d32;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .tree-trunk {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 200px;
+    background: linear-gradient(90deg, #5d4037, #8d6e63, #5d4037);
+    border-radius: 10px;
+    z-index: 1;
+  }
+  
+  .tree-leaves {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12em;
+    z-index: 0;
+    opacity: 0.4;
+  }
+  
+  .tree-fruits {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .tree-fruit {
+    aspect-ratio: 1;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 4px solid #ff6f00;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    padding: 5px;
+  }
+  
+  .tree-fruit:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  }
+  
+  .tree-fruit.correct-jump {
+    background: linear-gradient(135deg, #ffd600, #ff6f00);
+    animation: fruitBounce 0.6s;
+  }
+  
+  .tree-fruit.wrong-jump {
+    background: #ef5350;
+    animation: shake 0.5s;
+  }
+  
+  @keyframes fruitBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px) scale(1.2); }
+  }
+  
+  .tree-fruit-emoji { font-size: 2em; }
+  .tree-fruit-letter { font-size: 1.3em; font-weight: bold; color: #2e7d32; }
+  .tree-fruit.correct-jump .tree-fruit-letter { color: white; }
+  
+  /* جولة 6: سباق الغابة */
+  .race-track {
+    background: linear-gradient(180deg, #a1887f 0%, #8d6e63 100%);
+    border-radius: 25px;
+    padding: 30px 20px;
+    min-height: 400px;
+    border: 5px solid #5d4037;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .race-track::before {
+    content: '🌲 🌳 🌲 🌳 🌲 🌳 🌲';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    font-size: 1.5em;
+    letter-spacing: 5px;
+    opacity: 0.5;
+  }
+  
+  .race-track::after {
+    content: '🌲 🌳 🌲 🌳 🌲 🌳 🌲';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    font-size: 1.5em;
+    letter-spacing: 5px;
+    opacity: 0.5;
+  }
+  
+  .timer-display {
+    font-size: 3em;
+    color: #fff;
+    font-weight: bold;
+    background: linear-gradient(135deg, #d32f2f, #f44336);
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: 4px solid #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+  }
+  
+  .race-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .race-item {
+    background: linear-gradient(135deg, #fff8e1, #ffecb3);
+    border-radius: 15px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    border: 4px solid #ff6f00;
+    transition: all 0.3s;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  }
+  
+  .race-item:hover { transform: scale(1.08); }
+  
+  .race-item.collected {
+    background: linear-gradient(135deg, #66bb6a, #43a047);
+    border-color: #fff;
+    opacity: 0.6;
+    pointer-events: none;
+    animation: collectPop 0.5s;
+  }
+  
+  .race-item.wrong-collect {
+    background: #ef5350;
+    animation: shake 0.5s;
+  }
+  
+  @keyframes collectPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
+  .race-emoji { font-size: 2.5em; display: block; }
+  .race-word { font-size: 0.9em; color: #5d4037; font-weight: bold; }
+  .race-item.collected .race-word { color: white; }
+  
+  /* شاشة النهاية */
+  .winner-box {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #ffd54f, #ff8f00);
+    border-radius: 25px;
+    margin: 20px 0;
+    border: 6px solid #5d4037;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .winner-box::before {
+    content: '🌟 ⭐ 🌟 ⭐ 🌟 ⭐ 🌟';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    font-size: 1.5em;
+    letter-spacing: 10px;
+    animation: sparkle 1.5s infinite;
+  }
+  
+  .trophy {
+    font-size: 7em;
+    animation: trophySpin 2s infinite;
+    display: inline-block;
+    filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.3));
+  }
+  
+  @keyframes trophySpin {
+    0%, 100% { transform: rotate(-10deg) scale(1); }
+    50% { transform: rotate(10deg) scale(1.1); }
+  }
+  
+  .winner-name {
+    font-size: 2.5em;
+    color: #5d4037;
+    font-weight: bold;
+    margin: 15px 0;
+    text-shadow: 2px 2px 0 white;
+  }
+  
+  .final-scores {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .final-score-card {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 20px;
+    border: 4px solid #5d4037;
+    min-width: 150px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  
+  .feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6em;
+    z-index: 1000;
+    pointer-events: none;
+    animation: feedbackAnim 1s forwards;
+  }
+  
+  @keyframes feedbackAnim {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(-180deg); }
+    30% { opacity: 1; transform: translate(-50%, -50%) scale(1.5) rotate(0); }
+    100% { opacity: 0; transform: translate(-50%, -150%) scale(1); }
+  }
+  
+  .leaf-particle {
+    position: fixed;
+    font-size: 2em;
+    pointer-events: none;
+    z-index: 999;
+    animation: leafFall 3s linear forwards;
+  }
+  
+  @keyframes leafFall {
+    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+  
+  .bumo-guide {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    border: 3px solid #6d4c41;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .bumo-guide .bumo { font-size: 3em; margin: 0; }
+  .bumo-guide .message {
+    flex: 1;
+    color: #5d4037;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 600px) {
+    h1 { font-size: 1.8em; }
+    .big-letter { font-size: 6em; }
+    .tree-fruits { grid-template-columns: repeat(3, 1fr); }
+    .bridge-pair { flex-direction: column; }
+    .butterfly { width: 90px; height: 90px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🌳 مغامرة بومو في غابة النون 🦉</h1>
+  <div class="subtitle">✨ هيا نجمع ثمار حرف النون من الغابة السحرية! ✨</div>
+
+  <!-- شاشة البداية -->
+  <div id="start-screen" class="screen active">
+    <div class="start-box">
+      <div class="big-scene">
+        <div class="bumo">🦉</div>
+        <div class="big-letter">ن</div>
+      </div>
+      
+      <div class="speech-bubble">
+        <strong>مرحباً يا أصدقائي! أنا بومو البومة الحكيمة 🦉</strong><br>
+        هيا نذهب في مغامرة داخل الغابة السحرية لنجمع كل الأشياء التي تبدأ بحرف <span style="color:#ff6f00; font-size:1.3em;">ن</span>! 🌳🍎🦋
+      </div>
+      
+      <div class="players-setup">
+        <label>🧒 اسم المغامر الأول:</label>
+        <input type="text" id="p1-name" placeholder="مثال: يوسف" value="يوسف">
+        
+        <label>👧 اسم المغامرة الثانية:</label>
+        <input type="text" id="p2-name" placeholder="مثال: مريم" value="مريم">
+        
+        <label>👦 اسم المغامر الثالث (اختياري):</label>
+        <input type="text" id="p3-name" placeholder="اتركه فارغاً إن لم يلعب">
+        
+        <label>👶 اسم المغامر الرابع (اختياري):</label>
+        <input type="text" id="p4-name" placeholder="اتركه فارغاً إن لم يلعب">
+      </div>
+      
+      <button class="btn btn-green" onclick="startGame()">🚀 ابدأ المغامرة!</button>
+    </div>
+  </div>
+
+  <!-- شاشة اللعبة -->
+  <div id="game-screen" class="screen">
+    <div class="scoreboard" id="scoreboard"></div>
+    
+    <div class="forest-path" id="forest-path"></div>
+    
+    <div class="turn-indicator" id="turn-indicator"></div>
+    
+    <div class="bumo-guide" id="bumo-guide">
+      <div class="bumo">🦉</div>
+      <div class="message" id="bumo-message">مرحباً! أنا معك في هذه المغامرة!</div>
+    </div>
+    
+    <div class="round-info">
+      <div class="round-title" id="round-title"></div>
+      <div class="round-desc" id="round-desc"></div>
+    </div>
+    
+    <div id="round-content"></div>
+    
+    <div style="text-align:center; margin-top:20px;">
+      <button class="btn btn-blue" id="next-btn" onclick="nextTurn()" style="display:none;">
+        ➡️ المغامر التالي
+      </button>
+    </div>
+  </div>
+
+  <!-- شاشة النهاية -->
+  <div id="end-screen" class="screen">
+    <div class="winner-box">
+      <div class="trophy">🏆</div>
+      <div class="winner-name" id="winner-name"></div>
+      <div style="font-size:1.4em; color:#5d4037; font-weight:bold;" id="winner-title"></div>
+      
+      <div class="speech-bubble" style="margin-top:20px;">
+        <div class="bumo" style="font-size:2em;">🦉</div>
+        <div id="bumo-final-msg">أحسنت! لقد أتممت مغامرة الغابة بنجاح!</div>
+      </div>
+      
+      <div class="final-scores" id="final-scores"></div>
+      
+      <button class="btn btn-green" onclick="location.reload()" style="margin-top:25px;">
+        🔄 مغامرة جديدة
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============ نظام الأصوات ============
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function playTone(freq, duration, type='sine', volume=0.3) {
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration);
+}
+
+function playCorrect() {
+  // نغمة غابية سعيدة
+  playTone(392, 0.12, 'triangle', 0.3); // G
+  setTimeout(() => playTone(523.25, 0.12, 'triangle', 0.3), 100); // C
+  setTimeout(() => playTone(659.25, 0.25, 'triangle', 0.3), 200); // E
+}
+
+function playWrong() {
+  playTone(220, 0.15, 'sawtooth', 0.15);
+  setTimeout(() => playTone(165, 0.25, 'sawtooth', 0.15), 120);
+}
+
+function playClick() {
+  playTone(900, 0.04, 'square', 0.08);
+}
+
+function playWin() {
+  const notes = [523.25, 659.25, 783.99, 659.25, 783.99, 1046.50];
+  notes.forEach((n, i) => setTimeout(() => playTone(n, 0.2, 'triangle', 0.3), i * 130));
+}
+
+function playRoundStart() {
+  // نغمة بداية مغامرة
+  playTone(329.63, 0.1, 'triangle', 0.2);
+  setTimeout(() => playTone(415.30, 0.1, 'triangle', 0.2), 100);
+  setTimeout(() => playTone(493.88, 0.1, 'triangle', 0.2), 200);
+  setTimeout(() => playTone(659.25, 0.25, 'triangle', 0.25), 300);
+}
+
+function playTick() {
+  playTone(1200, 0.03, 'square', 0.08);
+}
+
+function playMagic() {
+  const notes = [880, 1108, 1318, 1568];
+  notes.forEach((n, i) => setTimeout(() => playTone(n, 0.1, 'sine', 0.15), i * 60));
+}
+
+// ============ البيانات - كلمات جديدة ============
+const nunWords = [
+  {word: 'نَحْلَة', emoji: '🐝'},
+  {word: 'نَعَامَة', emoji: '🦩'},
+  {word: 'نِسْر', emoji: '🦅'},
+  {word: 'نَوَرس', emoji: '🕊️'},
+  {word: 'نَمِلَة', emoji: '🐜'},
+  {word: 'نَخْلَة', emoji: '🌴'},
+  {word: 'نَبَات', emoji: '🌱'},
+  {word: 'نَبْض', emoji: '💓'},
+  {word: 'نَسِيم', emoji: '💨'},
+  {word: 'نَغْمَة', emoji: '🎵'},
+  {word: 'نَبْرَاس', emoji: '💡'},
+  {word: 'نَارَنج', emoji: '🍊'},
+  {word: 'نَجْم', emoji: '⭐'},
+  {word: 'نَار', emoji: '🔥'},
+  {word: 'نَهْر', emoji: '🌊'},
+  {word: 'نَبْع', emoji: '💧'}
+];
+
+const otherWords = [
+  {word: 'وَرْدَة', emoji: '🌹'},
+  {word: 'تُفَّاحَة', emoji: '🍎'},
+  {word: 'سَمَكَة', emoji: '🐟'},
+  {word: 'قِطَّة', emoji: '🐱'},
+  {word: 'كَلْب', emoji: '🐶'},
+  {word: 'بَطَّة', emoji: '🦆'},
+  {word: 'زَرَافَة', emoji: '🦒'},
+  {word: 'أَسَد', emoji: '🦁'},
+  {word: 'فِيل', emoji: '🐘'},
+  {word: 'دُبّ', emoji: '🐻'},
+  {word: 'خَرُوف', emoji: '🐑'},
+  {word: 'حِصَان', emoji: '🐴'},
+  {word: 'فَرَاشَة', emoji: '🦋'},
+  {word: 'سُلَحْفَاة', emoji: '🐢'},
+  {word: 'قِرْد', emoji: '🐵'}
+];
+
+// ============ حالة اللعبة ============
+let players = [];
+let currentPlayerIndex = 0;
+let currentRound = 0;
+let roundData = {};
+
+const avatars = ['🦊', '🐼', '🦁', '🐨'];
+
+// ============ دوال مساعدة ============
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function pickRandom(arr, n) {
+  return shuffle(arr).slice(0, Math.min(n, arr.length));
+}
+
+function startsWithNun(word) {
+  return nunWords.some(n => n.word === word);
+}
+
+function showFeedback(emoji) {
+  const f = document.createElement('div');
+  f.className = 'feedback';
+  f.textContent = emoji;
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), 1000);
+}
+
+function launchLeaves() {
+  const leaves = ['🍂', '🍁', '🍃', '🌿', '🌸', '⭐'];
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement('div');
+    c.className = 'leaf-particle';
+    c.textContent = leaves[Math.floor(Math.random() * leaves.length)];
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.top = '-30px';
+    c.style.animationDelay = Math.random() * 2 + 's';
+    c.style.animationDuration = (2 + Math.random() * 2) + 's';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 5000);
+  }
+}
+
+function setBumoMessage(msg) {
+  document.getElementById('bumo-message').textContent = msg;
+}
+
+function updateScoreboard() {
+  const sb = document.getElementById('scoreboard');
+  sb.innerHTML = '';
+  players.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'player-card' + (i === currentPlayerIndex ? ' active' : '');
+    card.innerHTML = `
+      <span class="player-avatar">${p.avatar}</span>
+      <div class="player-name">${p.name}</div>
+      <div class="player-score">${p.score}</div>
+      <div class="score-label">⭐ نجمة</div>
+    `;
+    sb.appendChild(card);
+  });
+}
+
+function updateForestPath() {
+  const path = document.getElementById('forest-path');
+  path.innerHTML = '';
+  const icons = ['🍎', '🦋', '💎', '🌉', '🌳', '🏁'];
+  for (let i = 0; i < 6; i++) {
+    const step = document.createElement('div');
+    step.className = 'path-step';
+    if (i < currentRound) step.classList.add('done');
+    else if (i === currentRound) step.classList.add('current');
+    step.textContent = icons[i];
+    path.appendChild(step);
+  }
+}
+
+function updateTurnIndicator() {
+  const ind = document.getElementById('turn-indicator');
+  ind.innerHTML = `${players[currentPlayerIndex].avatar} دور: <span style="color:#ffd600;">${players[currentPlayerIndex].name}</span>`;
+}
+
+function startGame() {
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  
+  const names = [
+    document.getElementById('p1-name').value.trim() || 'المغامر 1',
+    document.getElementById('p2-name').value.trim() || 'المغامر 2',
+    document.getElementById('p3-name').value.trim(),
+    document.getElementById('p4-name').value.trim()
+  ];
+  
+  players = names.filter(n => n).map((name, i) => ({
+    name, 
+    score: 0, 
+    avatar: avatars[i]
+  }));
+  
+  if (players.length < 2) {
+    alert('🦉 نحتاج مغامرين اثنين على الأقل!');
+    return;
+  }
+  
+  playRoundStart();
+  document.getElementById('start-screen').classList.remove('active');
+  document.getElementById('game-screen').classList.add('active');
+  
+  currentRound = 0;
+  currentPlayerIndex = 0;
+  startRound();
+}
+
+function startRound() {
+  updateScoreboard();
+  updateForestPath();
+  updateTurnIndicator();
+  playRoundStart();
+  
+  const rounds = [
+    {
+      title: '🍎 الجولة 1: جمع ثمار النون',
+      desc: 'اضغط على الفاكهة التي تبدأ بحرف نون فقط! (نجمة لكل ثمرة صحيحة)',
+      bumo: '🍎 ابحث عن الثمار التي تبدأ بحرف النون!'
+    },
+    {
+      title: '🦋 الجولة 2: صيد فراشات النون',
+      desc: 'الفراشات تطير! اصطحب فقط الفراشات التي تحمل كلمات تبدأ بنون (نجمتان لكل فراشة)',
+      bumo: '🦋 الفراشات تطير! اصطد التي تبدأ بالنون!'
+    },
+    {
+      title: '💎 الجولة 3: كنز الكهف',
+      desc: 'اختر كل الجواهر التي تبدأ كلماتها بحرف نون (نجمتان لكل جوهرة)',
+      bumo: '💎 في هذا الكهف كنوز! اختر التي تبدأ بالنون!'
+    },
+    {
+      title: '🌉 الجولة 4: جسر الحروف',
+      desc: 'اربط كل صورة بالحرف الصحيح (3 نجوم لكل مطابقة صحيحة)',
+      bumo: '🌉 اعبر الجسر! اربط الصورة بالحرف المناسب!'
+    },
+    {
+      title: '🌳 الجولة 5: شجرة النون',
+      desc: 'اقفز على الثمار التي تحمل حرف نون أو صور تبدأ به (نجمتان لكل قفزة)',
+      bumo: '🌳 الثمار على الشجرة! اقفز على التي فيها نون!'
+    },
+    {
+      title: '🏁 الجولة 6: السباق النهائي في الغابة',
+      desc: 'اجمع أكبر عدد من كنوز النون في 60 ثانية! (5 نجوم لكل كنز)',
+      bumo: '🏁 السباق النهائي! اجمع أكبر عدد من كنوز النون!'
+    }
+  ];
+  
+  document.getElementById('round-title').textContent = rounds[currentRound].title;
+  document.getElementById('round-desc').textContent = rounds[currentRound].desc;
+  setBumoMessage(rounds[currentRound].bumo);
+  
+  loadRoundContent();
+}
+
+function loadRoundContent() {
+  document.getElementById('next-btn').style.display = 'none';
+  const content = document.getElementById('round-content');
+  content.innerHTML = '';
+  
+  switch(currentRound) {
+    case 0: loadRound1(); break;
+    case 1: loadRound2(); break;
+    case 2: loadRound3(); break;
+    case 3: loadRound4(); break;
+    case 4: loadRound5(); break;
+    case 5: loadRound6(); break;
+  }
+}
+
+// ============ الجولة 1: جمع ثمار النون ============
+function loadRound1() {
+  roundData = {
+    items: shuffle([...pickRandom(nunWords, 5), ...pickRandom(otherWords, 5)]),
+    index: 0
+  };
+  showFruits();
+}
+
+function showFruits() {
+  const content = document.getElementById('round-content');
+  if (roundData.index >= roundData.items.length) {
+    setBumoMessage('🎉 أحسنت! لقد جمعت كل الثمار الصحيحة!');
+    document.getElementById('next-btn').style.display = 'inline-block';
+    content.innerHTML = `
+      <div class="fruit-tree" style="text-align:center;">
+        <div style="font-size:5em;">🧺</div>
+        <div style="font-size:2em; color:#2e7d32; font-weight:bold; margin-top:15px;">
+          ${players[currentPlayerIndex].name} أنهى جمع الثمار!
+        </div>
+      </div>
+    `;
+    return;
+  }
+  
+  const item = roundData.items[roundData.index];
+  content.innerHTML = `
+    <div class="fruit-tree">
+      <div style="text-align:center; font-size:1.3em; color:#2e7d32; font-weight:bold; margin-bottom:15px;">
+        🧺 الثمرة ${roundData.index + 1} من ${roundData.items.length}
+      </div>
+      <div style="text-align:center; margin-bottom:20px;">
+        <div style="font-size:6em; animation: fruitDrop 0.6s;">${item.emoji}</div>
+        <div style="font-size:2.5em; color:#5d4037; font-weight:bold; text-shadow: 2px 2px 0 white;">
+          ${item.word}
+        </div>
+      </div>
+      <div style="text-align:center; font-size:1.3em; color:#d84315; font-weight:bold; margin-bottom:15px;">
+        🤔 هل تبدأ هذه الكلمة بحرف النون؟
+      </div>
+      <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+        <button class="btn btn-green" onclick="answerFruit(true)">✅ نعم، تبدأ بنون</button>
+        <button class="btn btn-red" onclick="answerFruit(false)">❌ لا، لا تبدأ بنون</button>
+      </div>
+    </div>
+  `;
+}
+
+function answerFruit(isNun) {
+  const item = roundData.items[roundData.index];
+  const correct = startsWithNun(item.word);
+  
+  if (isNun === correct) {
+    players[currentPlayerIndex].score += 1;
+    playCorrect();
+    showFeedback('🍎');
+    setBumoMessage('🎉 إجابة صحيحة! نجمة لك!');
+  } else {
+    playWrong();
+    showFeedback('❌');
+    setBumoMessage('🤔 حاول مرة أخرى في المرة القادمة!');
+  }
+  
+  updateScoreboard();
+  roundData.index++;
+  setTimeout(showFruits, 900);
+}
+
+// ============ الجولة 2: صيد فراشات النون ============
+function loadRound2() {
+  const items = shuffle([...pickRandom(nunWords, 5), ...pickRandom(otherWords, 5)]);
+  roundData = {items, caught: new Set()};
+  
+  const content = document.getElementById('round-content');
+  content.innerHTML = `<div class="butterfly-field" id="butterfly-field"></div>`;
+  
+  const field = document.getElementById('butterfly-field');
+  items.forEach((item, i) => {
+    const b = document.createElement('div');
+    b.className = 'butterfly';
+    b.id = 'bf-' + i;
+    // توزيع الفراشات بشكل شبه عشوائي
+    const col = i % 4;
+    const row = Math.floor(i / 4);
+    b.style.left = (10 + col * 23) + '%';
+    b.style.top = (10 + row * 40) + '%';
+    b.style.animationDelay = (Math.random() * 2) + 's';
+    b.innerHTML = `
+      <div class="butterfly-emoji">${item.emoji}</div>
+      <div class="butterfly-word">${item.word}</div>
+    `;
+    b.onclick = () => catchButterfly(i, b);
+    field.appendChild(b);
+  });
+  
+  setTimeout(() => {
+    document.getElementById('next-btn').style.display = 'inline-block';
+  }, 2500);
+}
+
+function catchButterfly(i, el) {
+  if (roundData.caught.has(i)) return;
+  roundData.caught.add(i);
+  
+  const item = roundData.items[i];
+  if (startsWithNun(item.word)) {
+    el.classList.add('caught');
+    players[currentPlayerIndex].score += 2;
+    playCorrect();
+    showFeedback('🦋');
+    setBumoMessage('✨ فراشة نون! نجمتان!');
+  } else {
+    el.classList.add('wrong-catch');
+    playWrong();
+    showFeedback('💨');
+    setBumoMessage('🤔 هذه لا تبدأ بالنون!');
+    setTimeout(() => {
+      el.classList.remove('wrong-catch');
+      roundData.caught.delete(i);
+    }, 600);
+  }
+  updateScoreboard();
+}
+
+// ============ الجولة 3: كنز الكهف ============
+function loadRound3() {
+  const items = shuffle([...pickRandom(nunWords, 6), ...pickRandom(otherWords, 6)]);
+  roundData = {items, selected: new Set(), finished: false};
+  
+  const content = document.getElementById('round-content');
+  content.innerHTML = `
+    <div class="treasure-cave">
+      <div style="text-align:center; margin-bottom:15px;">
+        <button class="btn btn-purple" onclick="finishTreasure()">✨ إنهاء الجمع</button>
+      </div>
+      <div class="treasure-grid" id="treasure-grid"></div>
+    </div>
+  `;
+  
+  const grid = document.getElementById('treasure-grid');
+  items.forEach((item, i) => {
+    const t = document.createElement('div');
+    t.className = 'treasure-item';
+    t.id = 'tr-' + i;
+    t.innerHTML = `
+      <span class="treasure-emoji">${item.emoji}</span>
+      <div class="treasure-word">${item.word}</div>
+    `;
+    t.onclick = () => toggleTreasure(i, t);
+    grid.appendChild(t);
+  });
+}
+
+function toggleTreasure(i, el) {
+  if (roundData.finished) return;
+  playClick();
+  if (roundData.selected.has(i)) {
+    roundData.selected.delete(i);
+    el.classList.remove('selected');
+  } else {
+    roundData.selected.add(i);
+    el.classList.add('selected');
+  }
+}
+
+function finishTreasure() {
+  if (roundData.finished) return;
+  roundData.finished = true;
+  
+  let correct = 0;
+  roundData.selected.forEach(i => {
+    const item = roundData.items[i];
+    if (startsWithNun(item.word)) {
+      correct++;
+    } else {
+      document.getElementById('tr-' + i).classList.add('wrong-pick');
+    }
+  });
+  
+  // إظهار التي فاتت
+  roundData.items.forEach((item, i) => {
+    if (startsWithNun(item.word) && !roundData.selected.has(i)) {
+      const el = document.getElementById('tr-' + i);
+      el.style.border = '4px dashed #fff';
+      el.style.background = 'linear-gradient(135deg, #66bb6a, #43a047)';
+    }
+  });
+  
+  players[currentPlayerIndex].score += correct * 2;
+  updateScoreboard();
+  
+  if (correct > 0) {
+    playMagic();
+    showFeedback('💎');
+    setBumoMessage(`💎 رائع! حصلت على ${correct * 2} نجوم!`);
+  } else {
+    playWrong();
+    setBumoMessage('🤔 حاول اختيار أفضل في المرة القادمة!');
+  }
+  
+  document.getElementById('next-btn').style.display = 'inline-block';
+}
+
+// ============ الجولة 4: جسر الحروف ============
+function loadRound4() {
+  const pairs = pickRandom(nunWords, 4);
+  roundData = {
+    pairs,
+    selectedImage: null,
+    selectedLetter: null,
+    matched: new Set(),
+    letters: shuffle(['ن', 'ب', 'م', 'س', 'ت'])
+  };
+  
+  const content = document.getElementById('round-content');
+  content.innerHTML = `
+    <div class="bridge-scene">
+      <div style="text-align:center; color:white; font-size:1.2em; font-weight:bold; margin-bottom:15px; text-shadow: 2px 2px 0 rgba(0,0,0,0.3);">
+        🌉 اربط كل صورة بالحرف الذي تبدأ به!
+      </div>
+      <div id="bridge-pairs"></div>
+    </div>
+  `;
+  
+  const pairsDiv = document.getElementById('bridge-pairs');
+  pairs.forEach((p, i) => {
+    const pair = document.createElement('div');
+    pair.className = 'bridge-pair';
+    pair.innerHTML = `
+      <div class="bridge-image" id="bimg-${i}" onclick="selectBridgeImage(${i})">
+        <span class="bridge-emoji">${p.emoji}</span>
+        <div class="bridge-word">${p.word}</div>
+      </div>
+      <div class="bridge-arrow">⟵</div>
+      <div id="bletters-${i}" style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center;"></div>
+    `;
+    pairsDiv.appendChild(pair);
+    
+    const lettersDiv = document.getElementById(`bletters-${i}`);
+    roundData.letters.forEach((l, j) => {
+      const letter = document.createElement('div');
+      letter.className = 'bridge-letter';
+      letter.id = `bl-${i}-${j}`;
+      letter.textContent = l;
+      letter.onclick = () => selectBridgeLetter(i, j, l);
+      lettersDiv.appendChild(letter);
+    });
+  });
+  
+  setTimeout(() => {
+    document.getElementById('next-btn').style.display = 'inline-block';
+  }, 2000);
+}
+
+function selectBridgeImage(i) {
+  if (roundData.matched.has(i)) return;
+  playClick();
+  document.querySelectorAll('.bridge-image').forEach(e => e.classList.remove('selected'));
+  document.getElementById('bimg-' + i).classList.add('selected');
+  roundData.selectedImage = i;
+}
+
+function selectBridgeLetter(pairI, letterI, letter) {
+  playClick();
+  const letterEl = document.getElementById(`bl-${pairI}-${letterI}`);
+  if (letterEl.classList.contains('matched')) return;
+  
+  const imgEl = document.getElementById('bimg-' + pairI);
+  
+  if (letter === 'ن') {
+    imgEl.classList.add('matched');
+    letterEl.classList.add('matched');
+    players[currentPlayerIndex].score += 3;
+    playCorrect();
+    showFeedback('🌉');
+    roundData.matched.add(pairI);
+    setBumoMessage('🎉 مطابقة صحيحة! 3 نجوم!');
+    updateScoreboard();
+  } else {
+    playWrong();
+    showFeedback('❌');
+    setBumoMessage('🤔 هذه الصورة تبدأ بحرف النون "ن" فقط!');
+    letterEl.style.animation = 'shake 0.5s';
+    setTimeout(() => letterEl.style.animation = '', 500);
+  }
+}
+
+// ============ الجولة 5: شجرة النون ============
+function loadRound5() {
+  const tiles = [];
+  const nuns = pickRandom(nunWords, 4).map(n => ({type: 'nun', data: n}));
+  const others = pickRandom(otherWords, 4).map(o => ({type: 'other', data: o}));
+  const all = shuffle([...nuns, ...others]);
+  
+  roundData = {tiles: all};
+  
+  const content = document.getElementById('round-content');
+  content.innerHTML = `
+    <div class="nun-tree">
+      <div class="tree-leaves">🌳</div>
+      <div style="text-align:center; color:#2e7d32; font-size:1.2em; font-weight:bold; margin-bottom:15px; position:relative; z-index:2;">
+        🦘 اقفز على الثمار التي فيها حرف نون أو صور تبدأ به!
+      </div>
+      <div class="tree-fruits" id="tree-fruits"></div>
+    </div>
+  `;
+  
+  const grid = document.getElementById('tree-fruits');
+  all.forEach((t, i) => {
+    const div = document.createElement('div');
+    div.className = 'tree-fruit';
+    div.id = 'tf-' + i;
+    if (t.type === 'nun') {
+      div.innerHTML = `
+        <div class="tree-fruit-emoji">${t.data.emoji}</div>
+        <div class="tree-fruit-letter">${t.data.word}</div>
+      `;
+    } else {
+      const wrongLetters = ['ب', 'م', 'س', 'ت', 'ك', 'ل', 'و'];
+      const wrongLetter = wrongLetters[Math.floor(Math.random() * wrongLetters.length)];
+      div.innerHTML = `
+        <div class="tree-fruit-emoji">${t.data.emoji}</div>
+        <div class="tree-fruit-letter" style="color:#c62828;">${wrongLetter}</div>
+      `;
+    }
+    div.onclick = () => jumpFruit(i, div, t);
+    grid.appendChild(div);
+  });
+  
+  setTimeout(() => {
+    document.getElementById('next-btn').style.display = 'inline-block';
+  }, 2500);
+}
+
+function jumpFruit(i, el, tile) {
+  if (el.classList.contains('correct-jump') || el.classList.contains('wrong-jump')) return;
+  
+  if (tile.type === 'nun') {
+    el.classList.add('correct-jump');
+    players[currentPlayerIndex].score += 2;
+    playCorrect();
+    showFeedback('🦘');
+    setBumoMessage('🎉 قفزة رائعة! نجمتان!');
+  } else {
+    el.classList.add('wrong-jump');
+    playWrong();
+    showFeedback('💥');
+    setBumoMessage('🤔 هذه ليست من النون!');
+    setTimeout(() => el.classList.remove('wrong-jump'), 600);
+  }
+  updateScoreboard();
+}
+
+// ============ الجولة 6: السباق النهائي ============
+function loadRound6() {
+  const items = shuffle([...pickRandom(nunWords, 10), ...pickRandom(otherWords, 10)]);
+  roundData = {
+    items,
+    timeLeft: 60,
+    collected: new Set(),
+    timer: null,
+    finished: false
+  };
+  
+  const content = document.getElementById('round-content');
+  content.innerHTML = `
+    <div class="race-track">
+      <div style="text-align:center;">
+        <div class="timer-display" id="timer">⏱️ 60</div>
+      </div>
+      <div style="text-align:center; color:white; font-size:1.3em; font-weight:bold; margin-bottom:15px; text-shadow: 2px 2px 0 rgba(0,0,0,0.3);">
+        🏁 اجمع أكبر عدد من كنوز النون!
+      </div>
+      <div class="race-grid" id="race-grid"></div>
+    </div>
+  `;
+  
+  const grid = document.getElementById('race-grid');
+  items.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'race-item';
+    div.id = 'ri-' + i;
+    div.innerHTML = `
+      <span class="race-emoji">${item.emoji}</span>
+      <div class="race-word">${item.word}</div>
+    `;
+    div.onclick = () => collectRace(i, div, item);
+    grid.appendChild(div);
+  });
+  
+  roundData.timer = setInterval(() => {
+    roundData.timeLeft--;
+    document.getElementById('timer').textContent = '⏱️ ' + roundData.timeLeft;
+    if (roundData.timeLeft <= 10) playTick();
+    if (roundData.timeLeft <= 0) {
+      clearInterval(roundData.timer);
+      finishRace();
+    }
+  }, 1000);
+}
+
+function collectRace(i, el, item) {
+  if (roundData.finished) return;
+  if (roundData.collected.has(i)) return;
+  
+  if (startsWithNun(item.word)) {
+    el.classList.add('collected');
+    roundData.collected.add(i);
+    players[currentPlayerIndex].score += 5;
+    playCorrect();
+    showFeedback('💎');
+    updateScoreboard();
+  } else {
+    el.classList.add('wrong-collect');
+    playWrong();
+    showFeedback('❌');
+    setTimeout(() => el.classList.remove('wrong-collect'), 500);
+  }
+}
+
+function finishRace() {
+  roundData.finished = true;
+  setBumoMessage('🏆 انتهى السباق! أحسنت!');
+  document.getElementById('next-btn').style.display = 'inline-block';
+  launchLeaves();
+  playWin();
+}
+
+// ============ التنقل ============
+function nextTurn() {
+  playClick();
+  currentPlayerIndex++;
+  
+  if (currentPlayerIndex >= players.length) {
+    currentPlayerIndex = 0;
+    currentRound++;
+    
+    if (currentRound >= 6) {
+      endGame();
+      return;
+    }
+  }
+  
+  updateTurnIndicator();
+  updateScoreboard();
+  updateForestPath();
+  loadRoundContent();
+}
+
+function endGame() {
+  playWin();
+  launchLeaves();
+  setTimeout(launchLeaves, 500);
+  setTimeout(launchLeaves, 1000);
+  
+  document.getElementById('game-screen').classList.remove('active');
+  document.getElementById('end-screen').classList.add('active');
+  
+  const sorted = [...players].sort((a, b) => b.score - a.score);
+  const winner = sorted[0];
+  
+  document.getElementById('winner-name').textContent = '🎉 ' + winner.name + ' 🎉';
+  
+  if (sorted.length > 1 && sorted[0].score === sorted[1].score) {
+    document.getElementById('winner-title').textContent = '🤝 تعادل رائع في الغابة! 🤝';
+    document.getElementById('bumo-final-msg').textContent = '🤝 كلاكما بطل الغابة! أحسنتم!';
+  } else {
+    document.getElementById('winner-title').textContent = '👑 بطل غابة النون 👑';
+    document.getElementById('bumo-final-msg').textContent = `🎉 مبروك يا ${winner.name}! أنت بطل غابة النون!`;
+  }
+  
+  const scoresDiv = document.getElementById('final-scores');
+  scoresDiv.innerHTML = '';
+  const medals = ['🥇', '🥈', '🥉', '🏅'];
+  sorted.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'final-score-card';
+    card.innerHTML = `
+      <div style="font-size:2.5em;">${medals[i] || '🏅'}</div>
+      <div style="font-size:1.5em;">${p.avatar}</div>
+      <div style="font-size:1.2em; color:#5d4037; font-weight:bold;">${p.name}</div>
+      <div style="font-size:2em; color:#e65100; font-weight:bold;">${p.score} ⭐</div>
+    `;
+    scoresDiv.appendChild(card);
+  });
+}
+</script>
+
+</body>
+</html>
